@@ -433,10 +433,13 @@ class CephBootstrapRoot(configshell.ConfigNode):
         configshell.ConfigNode.__init__(self, '/', shell=shell)
 
     def list_commands(self):
-        return tuple(['cd', 'ls', 'help', 'exit'])
+        return tuple(['cd', 'ls', 'help', 'exit', 'status'])
 
     def summary(self):
         return "", None
+
+    def ui_command_status(self):
+        pass
 
 
 class GroupNode(configshell.ConfigNode):
