@@ -18,7 +18,6 @@ logger = logging.getLogger(__name__)
 class SaltClient:
     _OPTS_ = None
     _CALLER_ = None
-    _LOCAL_ = None
     _MASTER_ = None
 
     @classmethod
@@ -48,11 +47,9 @@ class SaltClient:
     @classmethod
     def local(cls):
         """
-        Initializes and retrieves the Salt local client instance
+        Retrieves a new Salt local client instance
         """
-        if cls._LOCAL_ is None:
-            cls._LOCAL_ = salt.client.LocalClient()
-        return cls._LOCAL_
+        return salt.client.LocalClient()
 
     @classmethod
     def master(cls, local=True):

@@ -6,10 +6,11 @@ install required packages:
   pkg.installed:
     - pkgs:
       - iputils
+      - lsof
       - podman
     - failhard: True
 
-{% if pillar['ceph-salt'].get('upgrades', {'enabled': False})['enabled'] %}
+{% if pillar['ceph-salt'].get('upgrades', {'enabled': True})['enabled'] %}
 
 {{ macros.begin_step('Upgrading all packages') }}
 
@@ -28,3 +29,11 @@ upgrades disabled:
 {% endif %}
 
 {{ macros.end_stage('Install and update required packages') }}
+
+{% if pillar['ceph-salt'].get('upgrades', {'reboot': True})['reboot'] %}
+
+reboot:
+   ceph_salt.reboot_if_needed:
+     - failhard: True
+
+{% endif %}
