@@ -10,3 +10,4 @@ virtualenv*
 .pytest_cache
 .tox
 .idea
+htmlcov
